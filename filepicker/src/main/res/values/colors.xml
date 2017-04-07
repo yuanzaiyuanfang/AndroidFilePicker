@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="BgToolBar">#373B3E</color>
+    <color name="BgRv">#191919</color>
+    <color name="BgItem">#353535</color>
+
+    <color name="ShadowItem">#94333232</color>
+
+    <color name="BgRvFileDivider">#EEEEEE</color>
+
+    <color name="xf_blue_color">#338EFF</color>
+    <color name="xf_blue_color_dark">#0066E5</color>
+    <color name="xf_orange_color">#FE7524</color>
+    <color name="xf_line_color">#DFDFDF</color>
+    <color name="xf_bg_color">#F4F4F4</color>
+    <color name="xf_tab_bg_color">#F9F9F9</color>
+    <color name="xf_title_color">#333333</color>
+    <color name="xf_text_color">#999999</color>
+    <color name="white">#ffffff</color>
+    <color name="bar_grey_90">#dd393a3e</color>
+    <color name="white_70">#ADFFFFFF</color>
+    <color name="green">#43c117</color>
+    <color name="green_70">#AD43c117</color>
+</resources>

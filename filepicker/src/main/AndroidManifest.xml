@@ -1,0 +1,44 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vincent.filepicker">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".activity.ImagePickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FilePickerTheme" />
+
+        <activity
+            android:name=".activity.ImageCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FilePickerTheme" />
+
+        <activity
+            android:name=".activity.ImageBrowserActivity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/FilePickerTheme" />
+
+        <activity
+            android:name=".activity.VideoPickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FilePickerTheme" />
+
+        <activity
+            android:name=".activity.AudioPickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FilePickerTheme" />
+
+        <activity
+            android:name=".activity.NormalFilePickActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FilePickerTheme" />
+
+    </application>
+
+</manifest>
