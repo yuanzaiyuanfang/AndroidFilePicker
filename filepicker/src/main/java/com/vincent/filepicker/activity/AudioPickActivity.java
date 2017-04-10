@@ -59,7 +59,7 @@ public class AudioPickActivity extends BaseActivity {
      *
      * @param activity
      * @param maxSelectNum   最大选择数量
-     * @param isNeedRecorder
+     * @param isNeedRecorder 是否需要录音
      */
     public static void start(Activity activity, int maxSelectNum, boolean isNeedRecorder) {
         Intent intent = new Intent(activity, AudioPickActivity.class);

@@ -110,6 +110,7 @@ public class ImageActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == ImagePickActivity.REQUEST_IMAGE) {
             ArrayList<ImageFile> images = data.getParcelableArrayListExtra(Constant.RESULT_PICK_IMAGE);
             startActivity(new Intent(this, SelectResultActivity.class).putExtra(SelectResultActivity.EXTRA_IMAGES, images));
+            // do something...
         }
     }
 }

@@ -78,10 +78,8 @@ public class FileActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == VideoPickActivity.REQUEST_VIDEO) {
-            ArrayList<NormalFile> images = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
-
+            ArrayList<NormalFile> normalFiles = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+            // do something...
         }
     }
-
-
 }

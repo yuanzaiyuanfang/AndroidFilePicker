@@ -67,7 +67,7 @@ public class NormalFilePickActivity extends BaseActivity {
      *
      * @param activity
      * @param maxSelectNum 最大选择数量
-     * @param mSuffix
+     * @param mSuffix 文件格式集合
      */
     public static void start(Activity activity, int maxSelectNum, String[] mSuffix) {
         Intent intent = new Intent(activity, NormalFilePickActivity.class);

@@ -16,38 +16,6 @@
 
     <include layout="@layout/layout_number" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_camera"
-        android:textColor="@color/green"
-        android:textSize="@dimen/middle_text_size" />
-
-    <RadioGroup
-        android:id="@+id/show_camera"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checkedButton="@+id/camera_yes"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/margin_text"
-        android:paddingTop="@dimen/margin_text">
-
-        <RadioButton
-            android:id="@+id/camera_yes"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/yes" />
-
-        <RadioButton
-            android:id="@+id/camera_no"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_text"
-            android:layout_weight="1.5"
-            android:text="@string/no" />
-    </RadioGroup>
-
     <Button
         android:id="@+id/video_selector"
         android:layout_width="match_parent"
