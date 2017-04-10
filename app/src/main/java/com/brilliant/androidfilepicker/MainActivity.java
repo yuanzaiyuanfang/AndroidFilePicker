@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.brilliant.androidfilepicker.audio.AudioActivity;
+import com.brilliant.androidfilepicker.file.FileActivity;
 import com.brilliant.androidfilepicker.image.ImageActivity;
 import com.brilliant.androidfilepicker.video.VideoActivity;
 
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.image_selector).setOnClickListener(this);
         findViewById(R.id.video_selector).setOnClickListener(this);
         findViewById(R.id.file_selector).setOnClickListener(this);
+        findViewById(R.id.audio_selector).setOnClickListener(this);
     }
 
     @Override
@@ -33,6 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.file_selector: {
+                startActivity(new Intent(this, FileActivity.class));
+                break;
+            }
+            case R.id.audio_selector: {
+                startActivity(new Intent(this, AudioActivity.class));
                 break;
             }
             default:

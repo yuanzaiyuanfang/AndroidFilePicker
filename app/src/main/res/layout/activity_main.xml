@@ -28,5 +28,11 @@
         android:layout_marginTop="10dp"
         android:text="文件选择" />
 
+    <Button
+        android:id="@+id/audio_selector"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:text="录音选择" />
 
 </LinearLayout>

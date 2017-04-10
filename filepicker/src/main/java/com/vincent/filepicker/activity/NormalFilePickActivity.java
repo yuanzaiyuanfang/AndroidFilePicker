@@ -1,5 +1,6 @@
 package com.vincent.filepicker.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +33,10 @@ import java.util.List;
  */
 
 public class NormalFilePickActivity extends BaseActivity {
+
+    //=== request code
+    public final static int REQUEST_FILE = 100;
+
     public static final int DEFAULT_MAX_NUMBER = 9;
     public static final String SUFFIX = "Suffix";
     private int mMaxNumber;
@@ -43,9 +48,12 @@ public class NormalFilePickActivity extends BaseActivity {
     private ProgressBar mProgressBar;
     private String[] mSuffix;
 
+    public final static String EXTRA_MAX_SELECT_NUM = "MaxSelectNum";
+
+    public final static String EXTRA_STUFFIX = "mSuffix";
+
     @Override
     void permissionGranted() {
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -54,13 +62,27 @@ public class NormalFilePickActivity extends BaseActivity {
         }, 1000);
     }
 
+    /**
+     * 启动文件选择
+     *
+     * @param activity
+     * @param maxSelectNum 最大选择数量
+     * @param mSuffix
+     */
+    public static void start(Activity activity, int maxSelectNum, String[] mSuffix) {
+        Intent intent = new Intent(activity, NormalFilePickActivity.class);
+        intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
+        intent.putExtra(EXTRA_STUFFIX, mSuffix);
+        activity.startActivityForResult(intent, REQUEST_FILE);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         setContentView(R.layout.activity_file_pick);
 
-        mMaxNumber = getIntent().getIntExtra(Constant.MAX_NUMBER, DEFAULT_MAX_NUMBER);
-        mSuffix = getIntent().getStringArrayExtra(SUFFIX);
+        mMaxNumber = getIntent().getIntExtra(EXTRA_MAX_SELECT_NUM, DEFAULT_MAX_NUMBER);
+        mSuffix = getIntent().getStringArrayExtra(EXTRA_STUFFIX);
         super.onCreate(savedInstanceState);
 
     }

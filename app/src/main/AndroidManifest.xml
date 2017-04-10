@@ -36,6 +36,18 @@
             android:name=".video.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|fontScale"
             android:screenOrientation="portrait" />
+
+        <!-- 文件选择 -->
+        <activity
+            android:name=".file.FileActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|fontScale"
+            android:screenOrientation="portrait" />
+
+        <!-- 音频选择 -->
+        <activity
+            android:name=".audio.AudioActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|fontScale"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

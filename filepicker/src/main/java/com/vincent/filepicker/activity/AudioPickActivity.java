@@ -1,5 +1,6 @@
 package com.vincent.filepicker.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -31,7 +32,9 @@ import java.util.List;
  */
 
 public class AudioPickActivity extends BaseActivity {
-    public static final String IS_NEED_RECORDER = "IsNeedRecorder";
+
+    //=== request code
+    public final static int REQUEST_AUDIO = 101;
 
     public static final int DEFAULT_MAX_NUMBER = 9;
     private int mMaxNumber;
@@ -42,20 +45,36 @@ public class AudioPickActivity extends BaseActivity {
     private boolean isNeedRecorder;
     private ArrayList<AudioFile> mSelectedList = new ArrayList<>();
 
+    public final static String EXTRA_MAX_SELECT_NUM = "MaxSelectNum";
+
+    public static final String IS_NEED_RECORDER = "IsNeedRecorder";
+
     @Override
     void permissionGranted() {
         loadData();
     }
 
+    /**
+     * 启动录音选择
+     *
+     * @param activity
+     * @param maxSelectNum   最大选择数量
+     * @param isNeedRecorder
+     */
+    public static void start(Activity activity, int maxSelectNum, boolean isNeedRecorder) {
+        Intent intent = new Intent(activity, AudioPickActivity.class);
+        intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
+        intent.putExtra(IS_NEED_RECORDER, isNeedRecorder);
+        activity.startActivityForResult(intent, REQUEST_AUDIO);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_audio_pick);
-        mMaxNumber = getIntent().getIntExtra(Constant.MAX_NUMBER, DEFAULT_MAX_NUMBER);
+        mMaxNumber = getIntent().getIntExtra(EXTRA_MAX_SELECT_NUM, DEFAULT_MAX_NUMBER);
         isNeedRecorder = getIntent().getBooleanExtra(IS_NEED_RECORDER, false);
         initView();
         super.onCreate(savedInstanceState);
-
-
     }
 
 
@@ -141,7 +160,7 @@ public class AudioPickActivity extends BaseActivity {
             setResult(RESULT_OK, intent);
             finish();
             return true;
-        } else if(id == R.id.action_record) {
+        } else if (id == R.id.action_record) {
             Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
             startActivityForResult(intent, Constant.REQUEST_CODE_TAKE_AUDIO);
             return true;
