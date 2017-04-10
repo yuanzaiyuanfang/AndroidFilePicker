@@ -74,7 +74,7 @@ public class VideoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean isShow = showCamera.getCheckedRadioButtonId() == R.id.camera_yes ? true : false;
 
-                VideoPickActivity.start(VideoActivity.this, maxSelectNum, isShow);
+                VideoPickActivity.start(VideoActivity.this, maxSelectNum, isShow,VideoPickActivity.REQUEST_VIDEO);
             }
         });
     }

@@ -91,15 +91,17 @@ public class ImagePickActivity extends BaseActivity {
      * @param isShow        是否展示照相机
      * @param enablePreview 是否允许预览
      * @param enableCrop    是否允许裁剪
+     * @param requestCode   请求码
      */
-    public static void start(Activity activity, int maxSelectNum, int mode, boolean isShow, boolean enablePreview, boolean enableCrop) {
+    public static void start(Activity activity, int maxSelectNum, int mode, boolean isShow,
+                             boolean enablePreview, boolean enableCrop, int requestCode) {
         Intent intent = new Intent(activity, ImagePickActivity.class);
         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
         intent.putExtra(EXTRA_SELECT_MODE, mode);
         intent.putExtra(EXTRA_SHOW_CAMERA, isShow);
         intent.putExtra(EXTRA_ENABLE_PREVIEW, enablePreview);
         intent.putExtra(EXTRA_ENABLE_CROP, enableCrop);
-        activity.startActivityForResult(intent, REQUEST_IMAGE);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override

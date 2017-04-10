@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import com.brilliant.androidfilepicker.R;
 import com.vincent.filepicker.Constant;
 import com.vincent.filepicker.activity.AudioPickActivity;
-import com.vincent.filepicker.activity.VideoPickActivity;
 import com.vincent.filepicker.filter.entity.AudioFile;
 
 import java.util.ArrayList;
@@ -75,14 +74,14 @@ public class AudioActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean isNeedRecorder = showCamera.getCheckedRadioButtonId() == R.id.camera_yes ? true : false;
 
-                AudioPickActivity.start(AudioActivity.this, maxSelectNum, isNeedRecorder);
+                AudioPickActivity.start(AudioActivity.this, maxSelectNum, isNeedRecorder, AudioPickActivity.REQUEST_AUDIO);
             }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == VideoPickActivity.REQUEST_VIDEO) {
+        if (resultCode == RESULT_OK && requestCode == AudioPickActivity.REQUEST_AUDIO) {
             ArrayList<AudioFile> audioFiles = data.getParcelableArrayListExtra(Constant.RESULT_PICK_VIDEO);
             // do something...
         }

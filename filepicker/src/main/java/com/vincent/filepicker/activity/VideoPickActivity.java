@@ -64,12 +64,13 @@ public class VideoPickActivity extends BaseActivity {
      * @param activity
      * @param maxSelectNum 最大选择数量
      * @param isShow       是否展示摄像头
+     * @param requestCode   请求码
      */
-    public static void start(Activity activity, int maxSelectNum, boolean isShow) {
+    public static void start(Activity activity, int maxSelectNum, boolean isShow, int requestCode) {
         Intent intent = new Intent(activity, VideoPickActivity.class);
         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
         intent.putExtra(EXTRA_SHOW_CAMERA, isShow);
-        activity.startActivityForResult(intent, REQUEST_VIDEO);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override

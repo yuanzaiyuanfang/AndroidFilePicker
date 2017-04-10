@@ -28,12 +28,17 @@ dependencies {
 3) 图片选择 
 
 ```java
-ImagePickActivity.start(ImageActivity.this, maxSelectNum, mode, isShow, isPreview, isCrop);
+int mode = selectMode.getCheckedRadioButtonId() == R.id.mode_multiple ? ImagePickActivity.MODE_MULTIPLE : ImagePickActivity.MODE_SINGLE;
+boolean isShow = showCamera.getCheckedRadioButtonId() == R.id.camera_yes ? true : false;
+boolean isPreview = enablePreview.getCheckedRadioButtonId() == R.id.preview_enable ? true : false;
+boolean isCrop = enableCrop.getCheckedRadioButtonId() == R.id.crop_enable ? true : false;
+
+ImagePickActivity.start(ImageActivity.this, maxSelectNum, mode, isShow, isPreview, isCrop, ImagePickActivity.REQUEST_IMAGE);
 ```
 same this
 
 ```java
-/**
+    /**
      * 启动图片选择页面
      *
      * @param activity
@@ -42,15 +47,17 @@ same this
      * @param isShow        是否展示照相机
      * @param enablePreview 是否允许预览
      * @param enableCrop    是否允许裁剪
+     * @param requestCode   请求码
      */
-    public static void start(Activity activity, int maxSelectNum, int mode, boolean isShow, boolean enablePreview, boolean enableCrop) {
+    public static void start(Activity activity, int maxSelectNum, int mode, boolean isShow,
+                             boolean enablePreview, boolean enableCrop, int requestCode) {
         Intent intent = new Intent(activity, ImagePickActivity.class);
         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
         intent.putExtra(EXTRA_SELECT_MODE, mode);
         intent.putExtra(EXTRA_SHOW_CAMERA, isShow);
         intent.putExtra(EXTRA_ENABLE_PREVIEW, enablePreview);
         intent.putExtra(EXTRA_ENABLE_CROP, enableCrop);
-        activity.startActivityForResult(intent, REQUEST_IMAGE);
+        activity.startActivityForResult(intent, requestCode);
     }
 ```
  Receive result in your onActivityResult Method
@@ -67,24 +74,27 @@ same this
 4) 视频选择 
 
 ```java
-VideoPickActivity.start(VideoActivity.this, maxSelectNum, isShow);
+boolean isShow = showCamera.getCheckedRadioButtonId() == R.id.camera_yes ? true : false;
+
+VideoPickActivity.start(VideoActivity.this, maxSelectNum, isShow,VideoPickActivity.REQUEST_VIDEO);
 ```
 same this
 
 ```java
- /**
-     * 启动视频选择
-     *
-     * @param activity
-     * @param maxSelectNum 最大选择数量
-     * @param isShow       是否展示摄像头
-     */
-    public static void start(Activity activity, int maxSelectNum, boolean isShow) {
-        Intent intent = new Intent(activity, VideoPickActivity.class);
-        intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
-        intent.putExtra(EXTRA_SHOW_CAMERA, isShow);
-        activity.startActivityForResult(intent, REQUEST_VIDEO);
-    }
+       /**
+      * 启动视频选择
+      *
+      * @param activity
+      * @param maxSelectNum 最大选择数量
+      * @param isShow       是否展示摄像头
+      * @param requestCode   请求码
+      */
+     public static void start(Activity activity, int maxSelectNum, boolean isShow, int requestCode) {
+         Intent intent = new Intent(activity, VideoPickActivity.class);
+         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
+         intent.putExtra(EXTRA_SHOW_CAMERA, isShow);
+         activity.startActivityForResult(intent, requestCode);
+     }
 ```
  Receive result in your onActivityResult Method
 
@@ -101,23 +111,26 @@ same this
 5) 文件选择 
 
 ```java
-NormalFilePickActivity.start(FileActivity.this, maxSelectNum, mSuffix);
+String[] mSuffix = {"txt"};
+
+NormalFilePickActivity.start(FileActivity.this, maxSelectNum, mSuffix, NormalFilePickActivity.REQUEST_FILE);
 ```
 same this
 
 ```java
-/**
+    /**
      * 启动文件选择
      *
      * @param activity
      * @param maxSelectNum 最大选择数量
      * @param mSuffix 文件格式集合
+     * @param requestCode   请求码
      */
-    public static void start(Activity activity, int maxSelectNum, String[] mSuffix) {
+    public static void start(Activity activity, int maxSelectNum, String[] mSuffix, int requestCode) {
         Intent intent = new Intent(activity, NormalFilePickActivity.class);
         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
         intent.putExtra(EXTRA_STUFFIX, mSuffix);
-        activity.startActivityForResult(intent, REQUEST_FILE);
+        activity.startActivityForResult(intent, requestCode);
     }
 ```
  Receive result in your onActivityResult Method
@@ -125,9 +138,9 @@ same this
 ``` java
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == VideoPickActivity.REQUEST_VIDEO) {
+        if (resultCode == RESULT_OK && requestCode == NormalFilePickActivity.REQUEST_FILE) {
             ArrayList<NormalFile> normalFiles = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
-            // do something...  
+            // do something...
         }
     }
 ```
@@ -135,23 +148,26 @@ same this
 5) 音频选择 
 
 ```java
-AudioPickActivity.start(AudioActivity.this, maxSelectNum, isNeedRecorder);
+boolean isNeedRecorder = showCamera.getCheckedRadioButtonId() == R.id.camera_yes ? true : false;
+
+AudioPickActivity.start(AudioActivity.this, maxSelectNum, isNeedRecorder, AudioPickActivity.REQUEST_AUDIO);
 ```
 same this
 
 ```java
-/**
+    /**
      * 启动录音选择
      *
      * @param activity
      * @param maxSelectNum   最大选择数量
      * @param isNeedRecorder 是否需要录音
+     * @param requestCode   请求码
      */
-    public static void start(Activity activity, int maxSelectNum, boolean isNeedRecorder) {
+    public static void start(Activity activity, int maxSelectNum, boolean isNeedRecorder, int requestCode) {
         Intent intent = new Intent(activity, AudioPickActivity.class);
         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
         intent.putExtra(IS_NEED_RECORDER, isNeedRecorder);
-        activity.startActivityForResult(intent, REQUEST_AUDIO);
+        activity.startActivityForResult(intent, requestCode);
     }
 ```
  Receive result in your onActivityResult Method
@@ -159,9 +175,9 @@ same this
 ``` java
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == VideoPickActivity.REQUEST_VIDEO) {
+        if (resultCode == RESULT_OK && requestCode == AudioPickActivity.REQUEST_AUDIO) {
             ArrayList<AudioFile> audioFiles = data.getParcelableArrayListExtra(Constant.RESULT_PICK_VIDEO);
-            // do something... 
+            // do something...
         }
     }
 ```

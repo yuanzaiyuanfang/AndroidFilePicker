@@ -68,12 +68,13 @@ public class NormalFilePickActivity extends BaseActivity {
      * @param activity
      * @param maxSelectNum 最大选择数量
      * @param mSuffix 文件格式集合
+     * @param requestCode   请求码
      */
-    public static void start(Activity activity, int maxSelectNum, String[] mSuffix) {
+    public static void start(Activity activity, int maxSelectNum, String[] mSuffix, int requestCode) {
         Intent intent = new Intent(activity, NormalFilePickActivity.class);
         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
         intent.putExtra(EXTRA_STUFFIX, mSuffix);
-        activity.startActivityForResult(intent, REQUEST_FILE);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override

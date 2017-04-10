@@ -100,7 +100,7 @@ public class ImageActivity extends AppCompatActivity {
                 boolean isPreview = enablePreview.getCheckedRadioButtonId() == R.id.preview_enable ? true : false;
                 boolean isCrop = enableCrop.getCheckedRadioButtonId() == R.id.crop_enable ? true : false;
 
-                ImagePickActivity.start(ImageActivity.this, maxSelectNum, mode, isShow, isPreview, isCrop);
+                ImagePickActivity.start(ImageActivity.this, maxSelectNum, mode, isShow, isPreview, isCrop, ImagePickActivity.REQUEST_IMAGE);
             }
         });
     }

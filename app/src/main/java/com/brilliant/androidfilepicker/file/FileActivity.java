@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import com.brilliant.androidfilepicker.R;
 import com.vincent.filepicker.Constant;
 import com.vincent.filepicker.activity.NormalFilePickActivity;
-import com.vincent.filepicker.activity.VideoPickActivity;
 import com.vincent.filepicker.filter.entity.NormalFile;
 
 import java.util.ArrayList;
@@ -70,14 +69,14 @@ public class FileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String[] mSuffix = {"txt"};
 
-                NormalFilePickActivity.start(FileActivity.this, maxSelectNum, mSuffix);
+                NormalFilePickActivity.start(FileActivity.this, maxSelectNum, mSuffix, NormalFilePickActivity.REQUEST_FILE);
             }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == VideoPickActivity.REQUEST_VIDEO) {
+        if (resultCode == RESULT_OK && requestCode == NormalFilePickActivity.REQUEST_FILE) {
             ArrayList<NormalFile> normalFiles = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
             // do something...
         }

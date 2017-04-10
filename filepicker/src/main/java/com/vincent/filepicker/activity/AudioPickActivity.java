@@ -60,12 +60,13 @@ public class AudioPickActivity extends BaseActivity {
      * @param activity
      * @param maxSelectNum   最大选择数量
      * @param isNeedRecorder 是否需要录音
+     * @param requestCode   请求码
      */
-    public static void start(Activity activity, int maxSelectNum, boolean isNeedRecorder) {
+    public static void start(Activity activity, int maxSelectNum, boolean isNeedRecorder, int requestCode) {
         Intent intent = new Intent(activity, AudioPickActivity.class);
         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
         intent.putExtra(IS_NEED_RECORDER, isNeedRecorder);
-        activity.startActivityForResult(intent, REQUEST_AUDIO);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override
