@@ -82,6 +82,16 @@ public class ImagePickActivity extends BaseActivity {
 
     private boolean enableCrop = false;
 
+    /**
+     * 启动图片选择页面
+     *
+     * @param activity
+     * @param maxSelectNum  最大选择图片数量
+     * @param mode          单选or多选
+     * @param isShow        是否展示照相机
+     * @param enablePreview 是否允许预览
+     * @param enableCrop    是否允许裁剪
+     */
     public static void start(Activity activity, int maxSelectNum, int mode, boolean isShow, boolean enablePreview, boolean enableCrop) {
         Intent intent = new Intent(activity, ImagePickActivity.class);
         intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
@@ -105,6 +115,7 @@ public class ImagePickActivity extends BaseActivity {
         if (selectMode == MODE_MULTIPLE) {
             enableCrop = false;
         } else {
+            maxSelectNum = 1;
             enablePreview = false;
         }
         initView();

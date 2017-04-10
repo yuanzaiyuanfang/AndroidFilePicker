@@ -155,5 +155,6 @@
         android:layout_marginTop="@dimen/margin_layout"
         android:background="@drawable/btn_round_green_enable"
         android:text="@string/select_picture"
+        android:textColor="@color/white"
         android:textSize="@dimen/middle_text_size" />
 </LinearLayout>

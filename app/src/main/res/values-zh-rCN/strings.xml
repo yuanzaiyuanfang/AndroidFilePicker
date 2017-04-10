@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">FilePicker</string>
+
     <string name="max_select_num">可选择图片数量</string>
-    <string name="select_picture">选择图片</string>
+    <string name="select_picture">选择</string>
     <string name="select_mode">选择模式</string>
     <string name="single">单选</string>
     <string name="multiple">多选</string>

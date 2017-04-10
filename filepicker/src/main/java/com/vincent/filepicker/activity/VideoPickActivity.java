@@ -1,5 +1,6 @@
 package com.vincent.filepicker.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +33,10 @@ import java.util.List;
  */
 
 public class VideoPickActivity extends BaseActivity {
+
+    //=== request code
+    public final static int REQUEST_VIDEO = 99;
+
     public static final String IS_NEED_CAMERA = "IsNeedCamera";
 
     public static final int DEFAULT_MAX_NUMBER = 9;
@@ -44,17 +49,35 @@ public class VideoPickActivity extends BaseActivity {
     private boolean isNeedCamera;
     private ArrayList<VideoFile> mSelectedList = new ArrayList<>();
 
+    public final static String EXTRA_MAX_SELECT_NUM = "MaxSelectNum";
+
+    public final static String EXTRA_SHOW_CAMERA = "ShowCamera";
+
     @Override
     void permissionGranted() {
         loadData();
+    }
+
+    /**
+     * 启动视频选择
+     *
+     * @param activity
+     * @param maxSelectNum 最大选择数量
+     * @param isShow       是否展示摄像头
+     */
+    public static void start(Activity activity, int maxSelectNum, boolean isShow) {
+        Intent intent = new Intent(activity, VideoPickActivity.class);
+        intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
+        intent.putExtra(EXTRA_SHOW_CAMERA, isShow);
+        activity.startActivityForResult(intent, REQUEST_VIDEO);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_video_pick);
 
-        mMaxNumber = getIntent().getIntExtra(Constant.MAX_NUMBER, DEFAULT_MAX_NUMBER);
-        isNeedCamera = getIntent().getBooleanExtra(IS_NEED_CAMERA, false);
+        mMaxNumber = getIntent().getIntExtra(EXTRA_MAX_SELECT_NUM, DEFAULT_MAX_NUMBER);
+        isNeedCamera = getIntent().getBooleanExtra(EXTRA_SHOW_CAMERA, false);
 
         initView();
         super.onCreate(savedInstanceState);

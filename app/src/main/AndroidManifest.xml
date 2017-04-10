@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,9 +25,15 @@
             android:configChanges="orientation|keyboardHidden|screenSize|fontScale"
             android:screenOrientation="portrait" />
 
-        <!-- 图片选择结果回调页面没呢 -->
+        <!-- 图片选择结果回调页面 -->
         <activity
             android:name=".image.SelectResultActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|fontScale"
+            android:screenOrientation="portrait" />
+
+        <!-- 视频选择 -->
+        <activity
+            android:name=".video.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|fontScale"
             android:screenOrientation="portrait" />
     </application>

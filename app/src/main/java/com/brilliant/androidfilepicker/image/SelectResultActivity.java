@@ -53,7 +53,6 @@ public class SelectResultActivity extends AppCompatActivity {
             singleImageView.setVisibility(View.GONE);
             resultRecyclerView.setAdapter(new GridAdapter());
         }
-
     }
 
     private class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
