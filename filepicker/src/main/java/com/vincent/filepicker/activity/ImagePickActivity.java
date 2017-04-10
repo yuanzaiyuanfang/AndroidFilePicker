@@ -1,5 +1,6 @@
 package com.vincent.filepicker.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,15 +36,19 @@ import static com.vincent.filepicker.activity.ImageBrowserActivity.IMAGE_BROWSER
 
 public class ImagePickActivity extends BaseActivity {
 
-    public static final String IS_NEED_CAMERA = "IsNeedCamera";
+    //=== request code
+    public final static int REQUEST_IMAGE = 66;
 
-    public static final String IS_ENABLE_CROP = "IsEnableCrop";
+    public final static int REQUEST_CAMERA = 67;
 
+    public final static int MODE_MULTIPLE = 1;
+
+    public final static int MODE_SINGLE = 2;
+
+    //===
     public static final int DEFAULT_MAX_NUMBER = 9;
 
     public static final int COLUMN_NUMBER = 3;
-
-    private int mMaxNumber;
 
     private int mCurrentNumber = 0;
 
@@ -53,23 +58,54 @@ public class ImagePickActivity extends BaseActivity {
 
     private ImagePickAdapter mAdapter;
 
-    private boolean isNeedCamera;
-
     private ArrayList<ImageFile> mSelectedList = new ArrayList<>();
 
-    private boolean enableCrop = false; // 是否允许裁剪
+    //=== 传递过来的参数name
+    public final static String EXTRA_SELECT_MODE = "SelectMode";
+
+    public final static String EXTRA_SHOW_CAMERA = "ShowCamera";
+
+    public final static String EXTRA_ENABLE_PREVIEW = "EnablePreview";
+
+    public final static String EXTRA_ENABLE_CROP = "EnableCrop";
+
+    public final static String EXTRA_MAX_SELECT_NUM = "MaxSelectNum";
+
+    //===
+    private int maxSelectNum = 9;
+
+    private int selectMode = MODE_MULTIPLE;
+
+    private boolean showCamera = true;
+
+    private boolean enablePreview = true;
+
+    private boolean enableCrop = false;
+
+    public static void start(Activity activity, int maxSelectNum, int mode, boolean isShow, boolean enablePreview, boolean enableCrop) {
+        Intent intent = new Intent(activity, ImagePickActivity.class);
+        intent.putExtra(EXTRA_MAX_SELECT_NUM, maxSelectNum);
+        intent.putExtra(EXTRA_SELECT_MODE, mode);
+        intent.putExtra(EXTRA_SHOW_CAMERA, isShow);
+        intent.putExtra(EXTRA_ENABLE_PREVIEW, enablePreview);
+        intent.putExtra(EXTRA_ENABLE_CROP, enableCrop);
+        activity.startActivityForResult(intent, REQUEST_IMAGE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_image_pick);
-        Intent intent = getIntent();
-        mMaxNumber = intent.getIntExtra(Constant.MAX_NUMBER, DEFAULT_MAX_NUMBER);
-        isNeedCamera = intent.getBooleanExtra(IS_NEED_CAMERA, false);
-        if (intent.hasExtra(IS_ENABLE_CROP)) {
-            enableCrop = intent.getBooleanExtra(IS_ENABLE_CROP, enableCrop);
-        }
-        if (mMaxNumber != 1) {
+
+        maxSelectNum = getIntent().getIntExtra(EXTRA_MAX_SELECT_NUM, DEFAULT_MAX_NUMBER);
+        selectMode = getIntent().getIntExtra(EXTRA_SELECT_MODE, MODE_MULTIPLE);
+        showCamera = getIntent().getBooleanExtra(EXTRA_SHOW_CAMERA, true);
+        enablePreview = getIntent().getBooleanExtra(EXTRA_ENABLE_PREVIEW, true);
+        enableCrop = getIntent().getBooleanExtra(EXTRA_ENABLE_CROP, false);
+
+        if (selectMode == MODE_MULTIPLE) {
             enableCrop = false;
+        } else {
+            enablePreview = false;
         }
         initView();
         super.onCreate(savedInstanceState);
@@ -82,7 +118,7 @@ public class ImagePickActivity extends BaseActivity {
 
     private void initView() {
         mTbImagePick = (Toolbar) findViewById(R.id.tb_image_pick);
-        mTbImagePick.setTitle(mCurrentNumber + "/" + mMaxNumber);
+        mTbImagePick.setTitle(mCurrentNumber + "/" + maxSelectNum);
         setSupportActionBar(mTbImagePick);
         mTbImagePick.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +131,7 @@ public class ImagePickActivity extends BaseActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, COLUMN_NUMBER);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(new DividerGridItemDecoration(this));
-        mAdapter = new ImagePickAdapter(this, isNeedCamera, mMaxNumber);
+        mAdapter = new ImagePickAdapter(this, showCamera, maxSelectNum);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnSelectStateListener(new OnSelectStateListener<ImageFile>() {
@@ -108,7 +144,7 @@ public class ImagePickActivity extends BaseActivity {
                     mSelectedList.remove(file);
                     mCurrentNumber--;
                 }
-                mTbImagePick.setTitle(mCurrentNumber + "/" + mMaxNumber);
+                mTbImagePick.setTitle(mCurrentNumber + "/" + maxSelectNum);
             }
         });
     }
@@ -134,7 +170,7 @@ public class ImagePickActivity extends BaseActivity {
                     ArrayList<ImageFile> list = (ArrayList<ImageFile>) IntentCacheHelper.getInstance().getIntentValue(Constant.RESULT_BROWSER_IMAGE);
                     mCurrentNumber = data.getIntExtra(IMAGE_BROWSER_SELECTED_NUMBER, 0);
                     mAdapter.setCurrentNumber(mCurrentNumber);
-                    mTbImagePick.setTitle(mCurrentNumber + "/" + mMaxNumber);
+                    mTbImagePick.setTitle(mCurrentNumber + "/" + maxSelectNum);
                     refreshSelectedList(list);
                     mAdapter.refresh(list);
                 }

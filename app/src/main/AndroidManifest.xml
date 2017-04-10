@@ -16,6 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 图片选择 -->
+        <activity
+            android:name=".image.ImageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|fontScale"
+            android:screenOrientation="portrait" />
+
+        <!-- 图片选择结果回调页面没呢 -->
+        <activity
+            android:name=".image.SelectResultActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|fontScale"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
