@@ -2,12 +2,9 @@
 android file picker ,you can choose image,video,file,etc..
 Image selector library for Android. Support single choice、multi-choice、cropping image and preview image.
 
-![](https://raw.githubusercontent.com/ioneday/ImageSelector/master/screenshot/Screenshot1.jpg)
-![](https://raw.githubusercontent.com/ioneday/ImageSelector/master/screenshot/Screenshot2.jpg)
-![](https://raw.githubusercontent.com/ioneday/ImageSelector/master/screenshot/Screenshot3.jpg)
-
-![](https://raw.githubusercontent.com/ioneday/ImageSelector/master/screenshot/Screenshot4.jpg)
-![](https://raw.githubusercontent.com/ioneday/ImageSelector/master/screenshot/Screenshot5.jpg)
+![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/device-2017-04-10-114356.png)
+![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/device-2017-04-10-114406.png)
+![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/device-2017-04-10-114415.png)
 
 ## Quick start
 
@@ -17,11 +14,7 @@ or
 
 ```xml
 dependencies {
-    compile 'com.android.support:recyclerview-v7:22.2.1'
-    compile 'com.github.bumptech.glide:glide:3.6.1'
-    compile 'com.commit451:PhotoView:1.2.4'
-    compile 'com.isseiaoki:simplecropview:1.0.13'
-    compile 'com.yongchun:com.yongchun.imageselector:1.1.0'
+    compile 'com.github.BrillantZhao:AndroidFilePicker:1.0.2'
 }
 ```
 
