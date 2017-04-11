@@ -30,7 +30,7 @@ Add it in your root build.gradle at the end of repositories:
 
 2) Declare permission in your AndroidManifest.xml
 
-```xml
+```
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
@@ -192,13 +192,19 @@ same this
     }
 ```
 
-## Thanks
+## 用到的第三方库
+    
+[Glide](https://github.com/bumptech/glide)
+compile 'com.github.bumptech.glide:glide:3.7.0'
 
-* [Glide](https://github.com/bumptech/glide)
+[PhotoView](https://github.com/chrisbanes/PhotoView)
+compile 'com.bm.photoview:library:1.4.1'
+    
+//===
+compile 'pub.devrel:easypermissions:0.2.1'
 
-* [PhotoView](https://github.com/chrisbanes/PhotoView)
-
-* [simplecropview](https://github.com/IsseiAoki/SimpleCropView)
+[simplecropview](https://github.com/IsseiAoki/SimpleCropView)
+compile 'com.isseiaoki:simplecropview:1.0.13'
 
 ###License
 >The MIT License (MIT)

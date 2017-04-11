@@ -29,9 +29,14 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.bm.photoview:library:1.4.1'
     compile 'com.android.support:design:24.2.1'
+
+    //=== [Glide](https://github.com/bumptech/glide)
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //=== [PhotoView](https://github.com/chrisbanes/PhotoView)
+    compile 'com.bm.photoview:library:1.4.1'
+    //===
     compile 'pub.devrel:easypermissions:0.2.1'
+    //=== [simplecropview](https://github.com/IsseiAoki/SimpleCropView)
     compile 'com.isseiaoki:simplecropview:1.0.13'
 }
