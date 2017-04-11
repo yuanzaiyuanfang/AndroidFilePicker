@@ -2,9 +2,9 @@
 android file picker ,you can choose image,video,file,etc..
 Image selector library for Android. Support single choice、multi-choice、cropping image and preview image.
 
-![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/device-2017-04-10-114356.png)
-![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/device-2017-04-10-114406.png)
-![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/device-2017-04-10-114415.png)
+![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/page01.png)
+![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/page02.png)
+![](https://github.com/BrillantZhao/AndroidFilePicker/blob/master/screenshot/page03.png)
 
 ## Quick start
 
@@ -12,9 +12,7 @@ Image selector library for Android. Support single choice、multi-choice、cropp
 
 or
 
-```xml
-Step 1. Add the JitPack repository to your build file 
-
+##### Step 1. Add the JitPack repository to your build file 
 Add it in your root build.gradle at the end of repositories:
 
 	allprojects {
@@ -24,12 +22,11 @@ Add it in your root build.gradle at the end of repositories:
 		}
 	}
 
-Step 2. Add the dependency
+##### Step 2. Add the dependency
 
     dependencies {
 	        compile 'com.github.BrillantZhao:AndroidFilePicker:1.0.2'
 	    }
-```
 
 2) Declare permission in your AndroidManifest.xml
 
